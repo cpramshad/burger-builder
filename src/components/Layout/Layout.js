@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Layout.module.css';
 
-const Layout = (props) => {
+const Layout = props => {
   const { children } = props;
   return (
     <>

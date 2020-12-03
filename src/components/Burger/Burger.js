@@ -6,9 +6,14 @@ import BurgerIngredient from './BurgerIngredients/BurgerIngredients';
 const Burger = props => {
   const { ingredients } = props;
 
-  const transformedIngredients = Object.keys(ingredients)
+  let transformedIngredients = Object.keys(ingredients)
     .map(ingKey => [...Array(ingredients[ingKey])]
-      .map((_, i) => <BurgerIngredient key={ingKey + i} type={ingKey} />));
+      .map((_, i) => <BurgerIngredient key={ingKey + i} type={ingKey} />))
+    .reduce((arr, el) => arr.concat(el), []);
+
+  if (transformedIngredients.length === 0) {
+    transformedIngredients = <p>Please start adding ingredients!</p>;
+  }
 
   return (
     <div className={classes.Burger}>
@@ -20,7 +25,7 @@ const Burger = props => {
 };
 
 Burger.propTypes = {
-  ingredients: PropTypes.shape({ root: PropTypes.string.isRequired }).isRequired,
+  ingredients: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 
 export default Burger;
