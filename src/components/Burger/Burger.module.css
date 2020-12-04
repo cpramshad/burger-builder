@@ -1,44 +1,30 @@
 .Burger {
-    width: 450px;
-    height: 400px;
+    width: 100%;
     margin: auto;
+    height: 250px;
     overflow: scroll;
     text-align: center;
     font-weight: bold;
     font-size: 1.2rem;
 }
 
-
-/* Big tablet to 1200px (widths smaller than the 1140px row*/
-@media only screen and (max-width: 1200px) {
+@media (min-width: 500px) and (min-height: 400px) {
     .Burger {
-        width: 700px;
-        height: 600px;
+        width: 350px;
+        height: 300px;
     }
 }
 
-/* Small tablet to big tablet: from 768 to 1023px */
-@media only screen and (max-width: 1023px) {  
-    .Burger {
-        width: 700px;
-        height: 600px;
-    }
-}
-
-/* Small phones to small tablets: from 481 to 767px */
-@media only screen and (max-width: 767px) {   
+@media (min-width: 500px) and (min-height: 401px) {
     .Burger {
         width: 450px;
         height: 400px;
     }
 }
 
-/* Small phones: from 0 to 480px */
-@media only screen and (max-width: 480px) {
+@media (min-width: 1000px) and (min-height: 700px) {
     .Burger {
-        width: 100%;
-        height: 250px;
+        width: 700px;
+        height: 600px;
     }
 }
-
-
