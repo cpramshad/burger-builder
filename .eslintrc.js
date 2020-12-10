@@ -26,5 +26,6 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'arrow-parens': ['error', 'as-needed'],
     'react/no-array-index-key': 0,
+    'react/jsx-props-no-spreading': 0,
   },
 };
