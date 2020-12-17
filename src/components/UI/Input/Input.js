@@ -3,7 +3,6 @@ import classes from './Input.module.css';
 
 const input = props => {
   let inputElement = null;
-  console.log(props.elementType);
   switch (props.elementType) {
     case ('input'):
       inputElement = (
@@ -11,6 +10,7 @@ const input = props => {
           className={classes.InputElement}
           {...props.elementConfig}
           value={props.value}
+          onChange={props.changed}
         />
       );
       break;
@@ -20,6 +20,7 @@ const input = props => {
           className={classes.InputElement}
           {...props.elementConfig}
           value={props.value}
+          onChange={props.changed}
         />
       );
       break;
@@ -28,7 +29,7 @@ const input = props => {
         <select
           className={classes.InputElement}
           value={props.value}
-          //onChange={props.changed}
+          onChange={props.changed}
         >
           {props.elementConfig.options.map(option => (
             <option key={option.value} value={option.value}>
@@ -37,7 +38,6 @@ const input = props => {
           ))}
         </select>
       );
-      console.log(inputElement);
       break;
     default:
       inputElement = (
