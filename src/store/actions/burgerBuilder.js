@@ -1,31 +1,41 @@
-import axios from '../../axios-orders';
 import * as actionTypes from './actionTypes';
+import axios from '../../axios-orders';
 
-export const addIngredient = name => ({
-  type: actionTypes.ADD_INGREDIENT,
-  ingredientName: name,
-});
+export const addIngredient = ( name ) => {
+    return {
+        type: actionTypes.ADD_INGREDIENT,
+        ingredientName: name
+    };
+};
 
-export const removeIngredient = name => ({
-  type: actionTypes.REMOVE_INGREDIENT,
-  ingredientName: name,
-});
+export const removeIngredient = ( name ) => {
+    return {
+        type: actionTypes.REMOVE_INGREDIENT,
+        ingredientName: name
+    };
+};
 
-export const setIngredient = ingredient => ({
-  type: actionTypes.SET_INGREDEINTS,
-  ingredients: ingredient,
-});
+export const setIngredients = ( ingredients ) => {
+    return {
+        type: actionTypes.SET_INGREDIENTS,
+        ingredients: ingredients
+    };
+};
 
-export const fetchIngredientsFailed = () => ({
-  type: actionTypes.FETCH_INGREDINTS_FAILED,
-});
+export const fetchIngredientsFailed = () => {
+    return {
+        type: actionTypes.FETCH_INGREDIENTS_FAILED
+    };
+};
 
-export const initIngredient = () => dispatch => {
-  axios.get('https://burger-builder-6833f-default-rtdb.firebaseio.com/ingredients.json')
-    .then(response => {
-      dispatch(setIngredient(response.data));
-    })
-    .catch(error => {
-      dispatch(fetchIngredientsFailed());
-    });
+export const initIngredients = () => {
+    return dispatch => {
+        axios.get( 'https://burger-builder-6833f-default-rtdb.firebaseio.com/ingredients.json' )
+            .then( response => {
+               dispatch(setIngredients(response.data));
+            } )
+            .catch( error => {
+                dispatch(fetchIngredientsFailed());
+            } );
+    };
 };
