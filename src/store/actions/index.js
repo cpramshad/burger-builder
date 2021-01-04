@@ -11,4 +11,5 @@ export {
 
 export {
   auth,
+  logout,
 } from './auth';
