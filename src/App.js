@@ -7,25 +7,18 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 
-const asyncCheckout = asyncComponent(() => {
-  return import('./containers/Checkout/Checkout');
-});
+const asyncCheckout = asyncComponent(() => import('./containers/Checkout/Checkout'));
 
-const asyncOrders = asyncComponent(() => {
-  return import('./containers/Orders/Orders');
-});
+const asyncOrders = asyncComponent(() => import('./containers/Orders/Orders'));
 
-const asyncAuth = asyncComponent(() => {
-  return import('./containers/Auth/Auth');
-});
-
+const asyncAuth = asyncComponent(() => import('./containers/Auth/Auth'));
 
 class App extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.onTryAutoSignup();
   }
-  
-  render () {
+
+  render() {
     let routes = (
       <Switch>
         <Route path="/auth" component={asyncAuth} />
@@ -34,8 +27,7 @@ class App extends Component {
       </Switch>
     );
 
-    
-    if ( this.props.isAuthenticated ) {
+    if (this.props.isAuthenticated) {
       routes = (
         <Switch>
           <Route path="/checkout" component={asyncCheckout} />
@@ -51,24 +43,19 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          {routes}  
+          {routes}
         </Layout>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.token !== null
-  };
-};
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.token !== null,
+});
 
+const mapDispatchToProps = dispatch => ({
+  onTryAutoSignup: () => dispatch(actions.authCheckState()),
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignup: () => dispatch( actions.authCheckState() )
-  };
-};
-
-export default connect( mapStateToProps, mapDispatchToProps )( App ) ;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
